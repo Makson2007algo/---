@@ -73,12 +73,22 @@ player2 = Player('racetka.png', 650, 20, 6, 50, 140)
 
 ball = GameSprite('ball.png', 40, 110, 7, 40, 40)
 
+speed_x = 3
+speed_y = 3
+
+
+
+
+
+
 
 
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+
+    
 #        elif e.type == KEYDOWN:
 #            if e.key == K_SPACE:
 #                fire_sound.play()
@@ -100,11 +110,15 @@ while game:
 #                    asteroid = Enemy('asteroid.png', randint(20,600), 0, randint(1,2), 50, 50)
 #                    asteroids.add(asteroid)
     if finish != True:      
-            window.blit(background,(0, 0))
-            player1.update_l()
-            player1.reset()
-            player2.update_r()
-            player2.reset()
-            ball.reset()
+        window.blit(background,(0, 0))
+        player1.update_l()
+        player1.reset()
+        player2.update_r()
+        player2.reset()
+        ball.reset() 
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+    if ball.rect.y > 475 or ball.rect.y < 0:
+        speed_y*= -1        
     display.update()
     clock.tick(FPS)
