@@ -68,8 +68,12 @@ class Player(GameSprite):
 #    asteroid = Enemy('asteroid.png', randint(20,600), 0, randint(1,2), 50, 50)
 #    asteroids.add(asteroid)
 #
-player1 = Player('racetka.png', 10, 20, 6, 40, 140)
-player2 = Player('racetka.png', 650, 20, 6, 40, 140)
+player1 = Player('racetka.png', 10, 20, 6, 50, 140)
+player2 = Player('racetka.png', 650, 20, 6, 50, 140)
+
+ball = GameSprite('ball.png', 40, 110, 7, 40, 40)
+
+
 
 while game:
     for e in event.get():
@@ -99,3 +103,8 @@ while game:
             window.blit(background,(0, 0))
             player1.update_l()
             player1.reset()
+            player2.update_r()
+            player2.reset()
+            ball.reset()
+    display.update()
+    clock.tick(FPS)
