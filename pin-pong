@@ -77,10 +77,10 @@ speed_x = 3
 speed_y = 3
 
 
-
-
-
-
+font.init()
+font = font.SysFont('Arial', 70)
+lose1 = font.render('Player one lose', True, (180, 0, 0))
+lose2 = font.render('Player two lose', True, (180, 0, 0))
 
 
 while game:
@@ -109,6 +109,14 @@ while game:
 #                for c in range(2):
 #                    asteroid = Enemy('asteroid.png', randint(20,600), 0, randint(1,2), 50, 50)
 #                    asteroids.add(asteroid)
+
+
+
+
+
+
+
+
     if finish != True:      
         window.blit(background,(0, 0))
         player1.update_l()
@@ -122,5 +130,16 @@ while game:
         speed_y*= -1     
     if sprite.collide_rect(player1, ball) or sprite.collide_rect(player2, ball):
         speed_x*= -1
+    
+    if ball.rect.x > 675 :
+        finish = True
+        window.blit(lose2, (200, 200))
+
+    
+    if ball.rect.x < -25:
+        finish = True
+        window.blit(lose1, (200, 200))
+
+
     display.update()
     clock.tick(FPS)
